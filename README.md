@@ -27,9 +27,31 @@ __Procedure__:
 5) (Optional) Add noise
 6) Coherent demodulation (multiply by synchronized carrier)
 7) Low-pass filter to recover message
-
+__Program__:
+import numpy as np
+import matplotlib.pyplot as plt
+Am =5    
+Ac =10   
+fm = 777   
+fc = 7770    
+fs = 77700   
+t = np.arange(0, 2/fm, 1/fs)
+m = Am * np.cos(2 * np.pi * fm * t)
+plt.subplot(3, 1, 1)
+plt.plot(t, m)
+c = Ac * np.cos(2 * np.pi * fc * t)
+plt.subplot(3, 1, 2)
+plt.plot(t, c)
+s1 = (Ac + m) * np.cos(2 * np.pi * fc * t)
+s2 = (Ac - m) * np.cos(2 * np.pi * fc * t)
+s = s1 - s2
+plt.subplot(3, 1, 3)
+plt.plot(t, s)
+plt.tight_layout()
+plt.show()
    __Tabulation__:
-
+![WhatsApp Image 2025-11-20 at 23 26 56_4e4eed8c](https://github.com/user-attachments/assets/afdf6e3d-ce26-44e4-8314-18ccea4b864f)
    __Output__:
-
+<img width="630" height="469" alt="image" src="https://github.com/user-attachments/assets/fb0a8ed9-5c9c-4628-ab47-31cf8572d1be" />
    __Result__:
+Thus the DSB-SC-AM Modulation and Demodulation using python is generated.
